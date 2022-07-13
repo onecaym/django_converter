@@ -9,4 +9,6 @@ class Converter():
 		pdf_file_path = path
 		pdf_filename = f"pdf2word_conv/converted_files/{name}.docx"
 
-		return parse(pdf_file_path, pdf_filename)
+		parse(pdf_file_path, pdf_filename)
+
+		return pdf_filename
