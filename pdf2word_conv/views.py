@@ -20,7 +20,7 @@ def conv_to_word(request):
 			uploaded_file = Uploaded_File(file=request.FILES['file'])
 			uploaded_file.save()
 			f = Uploaded_File.objects.get(file=f"{request.FILES['file'].name}")
-			converter = Converter()
+			converter = FileConverter()
 			converted_file = converter.create_file(f.file.path, f)
 			response = FileResponse(open(f'{converted_file}', 'rb'), as_attachment=True)
 

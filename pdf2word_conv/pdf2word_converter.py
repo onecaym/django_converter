@@ -1,14 +1,16 @@
-from pdf2docx import parse
+from pdf2docx import Converter
 
-class Converter():
+class FileConverter():
 
 	def __init__(self):
 		converter = self
 
 	def create_file(self, path, name):
-		pdf_file_path = path
-		pdf_filename = f"pdf2word_conv/converted_files/{name}.docx"
+		filepath = path
+		pdf_file = Converter(filepath)
+		new_file_name = str(name)[:-4]
+		word_file_path = f"pdf2word_conv/converted_files/{new_file_name}.docx"
+		pdf_file.convert(word_file_path, multi_processing=True, cpu_count=2)
 
-		parse(pdf_file_path, pdf_filename)
-
-		return pdf_filename
+		return word_file_path
+		pdf_file.close()
