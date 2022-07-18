@@ -36,6 +36,8 @@ MEDIA_ROOT = 'uploads/'
 INSTALLED_APPS = [
     #my
     'pdf2word_conv',
+    #thirt party apps
+    'bootstrap4',
     #default
     'django.contrib.admin',
     'django.contrib.auth',
