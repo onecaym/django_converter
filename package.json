@@ -1,0 +1,22 @@
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onecaym/django_converter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onecaym/django_converter/issues"
+  },
+  "homepage": "https://github.com/onecaym/django_converter#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
