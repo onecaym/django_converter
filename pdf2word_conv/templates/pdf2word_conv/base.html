@@ -14,13 +14,23 @@
     <title>File Converter</title>
   </head>
 
-  <body>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">CONVERTER</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          </nav>
+        </div>
+      </header>
 
-  	<nav class="navbar navbar-dark bg-dark">
-  		<a class="navbar-brand" href="{% url 'index' %}">Home</a>
-  	</nav>
-	
-	<div>{% block content %}{% endblock content %}</div>
+      <main class="px-3">
+        {% block content %}
+        {% endblock content %}
+      </main>
+    </div>
 
   </body>
 

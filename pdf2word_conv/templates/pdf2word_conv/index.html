@@ -2,13 +2,15 @@
 
 {% block content %}
 
-    <div class="col text-center">
+  <h1>Easy File Converter</h1>
+  <p class="lead"> Convert your PDF files to a .DOCX extention</p>
 
-    	<a class="btn btn-primary btn-lg"
-    	href="{% url 'conv_to_word' %}" 
-    	role="button">Convertate from PDF to DOCX</a>
-    </div>
+  <div class="col text-center">
+
+  	<a class="btn btn-primary btn-lg"
+  	href="{% url 'conv_to_word' %}" 
+  	role="button">Convertate from PDF to DOCX</a>
+
+  </div>
 
 {% endblock content %}
-
-</html>
