@@ -140,5 +140,5 @@ LOGIN_REDIRECT_URL = 'pdf2word_conv:index'
 LOGIN_URL = 'users:login'
 
 # Heroku settings.
-import django_heroku
-django_heroku.settings(locals())
+import django_on_heroku
+django_on_heroku.settings(locals())
