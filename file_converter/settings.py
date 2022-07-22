@@ -138,3 +138,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'pdf2word_conv:index'
 LOGIN_URL = 'users:login'
+
+# Heroku settings.
+import django_heroku
+django_heroku.settings(locals())
