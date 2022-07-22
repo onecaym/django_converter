@@ -1,9 +1,16 @@
 from pdf2docx import Converter
+import os.path
 
 class FileConverter():
 
 	def __init__(self):
 		converter = self
+
+	def get_extention(self, name):
+		namepath = name
+		path, extention = (os.path.splitext(namepath))
+		return extention
+
 
 	def create_file(self, path, name):
 		filepath = path

@@ -1,0 +1,45 @@
+{% extends "pdf2word_conv/base.html" %}
+
+{% block content %}
+<!-- 
+	<form method="post" action="{% url 'users:register' %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+
+		<button name="submit">Register</button>
+		<input type="hidden" name="next" value="{% url 'pdf2word_conv:index' %}" />
+	</form>
+ -->
+
+	<form method="post" action="{% url 'users:register' %}">
+		{% csrf_token %}
+		<div class="cover-container d-flex w-25 h-25 p-3 mx-auto flex-column">
+		  <div class="mb-3">
+		  	<p>
+			    <label for="exampleInputUsername" class="form-label">Username</label>
+			    <input id="id_username" type="text" name="username" class="form-control" aria-describedby="emailHelp">
+		    </p>
+		    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+		  </div>
+		  <div class="mb-3">
+		    <label for="exampleInputPassword1" class="form-label">Password</label>
+		    <input id="id_password1"  type="password" name="password1" class="form-control">
+		  </div>
+		  <div class="mb-3">
+		    <label for="exampleInputPassword1" class="form-label">Submit Your password</label>
+		    <input id="id_password2"  type="password" name="password2" class="form-control">
+		  </div>
+		  <button type="submit" class="btn btn-primary">Register</button>
+  			{% if messages %}
+			<ul class="messages">
+			    {% for message in messages %}
+				    <li
+				    {% if message.tags %} class="{{ message.tags }} text-danger p-3"{% endif %}>{{ message }}
+					</li>
+			    {% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+</form>
+
+{% endblock content %}

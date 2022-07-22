@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from pdf2word_conv.pdf2word_converter import *
-from django.http import HttpResponseRedirect
 from .forms import UploadFileForm
 from .models import Uploaded_File
 from django.http import FileResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 
@@ -13,6 +14,7 @@ def index(request):
 def success(request):
 	return render(request, 'pdf2word_conv/success.html')
 
+@login_required
 def conv_to_word(request):
 	if request.method == 'POST':
 		form = UploadFileForm(request.POST, request.FILES)
@@ -21,11 +23,12 @@ def conv_to_word(request):
 			uploaded_file.save()
 			f = Uploaded_File.objects.get(file=f"{request.FILES['file'].name}")
 			converter = FileConverter()
-			converted_file = converter.create_file(f.file.path, f)
-			response = FileResponse(open(f'{converted_file}', 'rb'), as_attachment=True)
-
-
-			return response
+			if converter.get_extention(f.file.path) != '.pdf':
+				messages.info(request, "Your file must have .pdf extention")
+			else:
+				converted_file = converter.create_file(f.file.path, f)
+				response = FileResponse(open(f'{converted_file}', 'rb'), as_attachment=True)
+				return response
 	else:
 		form = UploadFileForm()
 
