@@ -19,7 +19,9 @@ def success(request):
 
 @login_required
 def conv_to_word(request):
-    if request.method == 'POST':
+    if request.method != 'POST':
+        form = UploadFileForm()
+    else:
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             uploaded_file = Uploaded_File(file=request.FILES['file'])
@@ -30,14 +32,15 @@ def conv_to_word(request):
                 messages.info(request, "Your file must have .pdf extention")
             else:
                 converted_file = converter.create_file(f.file.path, f)
-                response = FileResponse(
-                    open(
-                        f'{converted_file}',
-                        'rb'),
-                    as_attachment=True)
-                return response
-    else:
-        form = UploadFileForm()
+                if converted_file != False:
+                    response = FileResponse(
+                        open(
+                            f'{converted_file}',
+                            'rb'),
+                        as_attachment=True)
+                    return response
+                else:
+                    messages.info(request, ".pdf files without images only!")
 
     # return render(request, 'pdf2word_conv/conv_to_word.html')
     return render(request, 'pdf2word_conv/conv_to_word.html', {'form': form})
