@@ -19,6 +19,7 @@ def success(request):
 
 @login_required
 def conv_to_word(request):
+    # check valid form
     if request.method != 'POST':
         form = UploadFileForm()
     else:
@@ -26,12 +27,12 @@ def conv_to_word(request):
         if form.is_valid():
             uploaded_file = Uploaded_File(file=request.FILES['file'])
             uploaded_file.save()
-            f = Uploaded_File.objects.get(file=f"{request.FILES['file'].name}")
+            file_object = Uploaded_File.objects.get(file=f"{request.FILES['file'].name.replace(' ','_')}")
             converter = FileConverter()
-            if converter.get_extention(f.file.path) != '.pdf':
+            if converter.get_extention(file_object.file.path) != '.pdf':
                 messages.info(request, "Your file must have .pdf extention")
             else:
-                converted_file = converter.create_file(f.file.path, f)
+                converted_file = converter.create_file(file_object.file.path, file_object)
                 if converted_file != False:
                     response = FileResponse(
                         open(
