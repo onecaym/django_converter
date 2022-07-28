@@ -29,19 +29,16 @@ def conv_to_word(request):
             uploaded_file.save()
             file_object = Uploaded_File.objects.get(file=f"{request.FILES['file'].name.replace(' ','_')}")
             converter = FileConverter()
-            if converter.get_extention(file_object.file.path) != '.pdf':
-                messages.info(request, "Your file must have .pdf extention")
+            converted_file = converter.create_file(file_object.file.path, file_object)
+            if converted_file != False:
+                response = FileResponse(
+                    open(
+                        f'{converted_file}',
+                        'rb'),
+                    as_attachment=True)
+                return response
             else:
-                converted_file = converter.create_file(file_object.file.path, file_object)
-                if converted_file != False:
-                    response = FileResponse(
-                        open(
-                            f'{converted_file}',
-                            'rb'),
-                        as_attachment=True)
-                    return response
-                else:
-                    messages.info(request, ".pdf files without images only!")
+                messages.info(request, ".pdf files without images only!")
 
     # return render(request, 'pdf2word_conv/conv_to_word.html')
     return render(request, 'pdf2word_conv/conv_to_word.html', {'form': form})
