@@ -39,6 +39,7 @@ MEDIA_ROOT = 'uploads/'
 
 INSTALLED_APPS = [
     #my
+    'audiotext',
     'users',
     'pdf2word_conv',
     #thirt party apps
@@ -139,6 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'pdf2word_conv:index'
 LOGIN_URL = 'users:login'
 
-# Heroku settings.
-import django_on_heroku
-django_on_heroku.settings(locals())
+# # Heroku settings.
+# import django_on_heroku
+# django_on_heroku.settings(locals())
