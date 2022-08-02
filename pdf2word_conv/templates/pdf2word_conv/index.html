@@ -2,19 +2,19 @@
 
 {% block content %}
 
-  <h1>Easy File Converter</h1>
-  <p class="lead"> Convert your PDF files to a .DOCX extention</p>
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <p class="h2 mb-5">Make actions on files and text.</p>
 
-  <div class="col text-center">
+    <div class="col text-center">
 
-  	<a class="btn btn-primary btn-lg p-3 me-4"
-  	href="{% url 'pdf2word_conv:conv_to_word' %}" 
-  	role="button">Convert PDF to DOCX</a>
+    	<a class="btn btn-primary btn-lg p-3 me-4"
+    	href="{% url 'pdf2word_conv:conv_to_word' %}" 
+    	role="button">Convert PDF to DOCX</a>
 
-    <a class="btn btn-primary btn-lg p-3 ms-4"
-    href="{% url 'audiotext:create' %}" 
-    role="button">Voice text</a>
-
+      <a class="btn btn-primary btn-lg p-3 ms-4"
+      href="{% url 'audiotext:create' %}" 
+      role="button">Voice text</a>
+    </div>
   </div>
 
 {% endblock content %}
