@@ -7,9 +7,13 @@
 
   <div class="col text-center">
 
-  	<a class="btn btn-primary btn-lg"
+  	<a class="btn btn-primary btn-lg p-3 me-4"
   	href="{% url 'pdf2word_conv:conv_to_word' %}" 
   	role="button">Convert PDF to DOCX</a>
+
+    <a class="btn btn-primary btn-lg p-3 ms-4"
+    href="{% url 'audiotext:create' %}" 
+    role="button">Voice text</a>
 
   </div>
 
