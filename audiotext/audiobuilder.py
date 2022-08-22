@@ -11,7 +11,7 @@ class AudioBuilder():
 
 	def buildaudio(self, content, language):
 		audio_folder = "audiotext/audiofiles"
-		text = content
+		text = content.replace(' ','_')
 		file_name = text[0:20]
 		prepared_file = gTTS(text, lang=language)
 		audio_file = prepared_file.save(f"{audio_folder}/{file_name}.mp3")
