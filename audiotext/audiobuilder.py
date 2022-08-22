@@ -9,13 +9,11 @@ class AudioBuilder():
 	def search_file(self, filename):
 		return(f"audiotext/audiofiles/{filename}.mp3")
 
-	def buildaudio(self, path, name, language):
+	def buildaudio(self, content, language):
 		audio_folder = "audiotext/audiofiles"
-		file_path = path
-		new_name = str(name)[:-4]
-		content = open(file_path)
-		text = content.read()
+		text = content
+		file_name = text[0:20]
 		prepared_file = gTTS(text, lang=language)
-		audio_file = prepared_file.save(f"{audio_folder}/{new_name}.mp3")
+		audio_file = prepared_file.save(f"{audio_folder}/{file_name}.mp3")
 		
-		return self.search_file(new_name)
+		return self.search_file(file_name)
