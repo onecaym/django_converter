@@ -5,15 +5,23 @@
   <div class="position-absolute top-50 start-50 translate-middle">
     <p class="h2 mb-5">Make actions with files and text.</p>
 
-    <div class="col text-center">
-
-    	<a class="btn btn-primary btn-lg p-3 me-4"
+    <div>
+    	<a class="btn btn-primary btn-lg p-3 mb-3"
     	href="{% url 'pdf2word_conv:conv_to_word' %}" 
-    	role="button">Convert PDF to DOCX</a>
+    	role="button" style="width: 500px;">Convert PDF to DOCX</a>
+    </div>
 
-      <a class="btn btn-primary btn-lg p-3 ms-4"
+    <div>
+      <a class="btn btn-primary btn-lg p-3 mb-3"
       href="{% url 'audiotext:create' %}" 
-      role="button">Voice text</a>
+      role="button" style="width: 500px;">Voice text</a>
+    </div>
+
+
+    <div>
+      <a class="btn btn-primary btn-lg p-3 mb-3"
+      href="{% url 'carnews:news' %}" 
+      role="button" style="width: 500px;">Car news</a>
     </div>
   </div>
 

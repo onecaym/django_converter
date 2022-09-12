@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'audiotext',
     'users',
     'pdf2word_conv',
+    'carnews',
     #thirt party apps
     'bootstrap4',
     #default

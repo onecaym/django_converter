@@ -1,0 +1,53 @@
+{% extends 'pdf2word_conv/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-3">
+
+            {% for one_new in news_objects %}
+
+            <div class="col col-lg-4">
+              <div class="card text-white bg-secondary" style="height: 440px;">
+                <img src="{{ one_new.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ one_new.title }}</h5>
+                  <div style="height: 75px;">
+                    <p class="card-text">{{ one_new.description }}</p>
+                  </div>
+                  <div class="d-grid gap-2">
+                    <a href="{{ one_new.link }}" class="btn btn-primary" type="button">Read full</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+  </div>
+
+</div>
+
+
+<!--     <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+{% endblock content %}

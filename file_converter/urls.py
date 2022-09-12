@@ -21,4 +21,5 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('', include('pdf2word_conv.urls')),
     path('', include('audiotext.urls')),
+    path('', include('carnews.urls')),
 ]
