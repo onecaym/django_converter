@@ -8,11 +8,15 @@ from users.check_request_data import *
 
 def register(request):
     if request.method != 'POST':
+
         # Display blank registration form.
         form = UserCreationForm()
     else:
+
         # Process completed form.
         form = UserCreationForm(data=request.POST)
+
+        # Check registration data. If invalid returns message.
         username = request.POST['username']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
@@ -25,10 +29,13 @@ def register(request):
         else:
             if form.is_valid():
                 new_user = form.save()
+
                 # Log the user in and then redirect to home page.
                 login(request, new_user)
                 return redirect('pdf2word_conv:index')
             else:
+
+                # Raise password error
                 messages.info(
                     request, 'Your password is too simple. Try another.')
 

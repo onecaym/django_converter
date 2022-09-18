@@ -5,19 +5,29 @@ from .models import Uploaded_File
 from django.http import FileResponse
 
 
-def create(request):
-	if request.method != "POST":
-		form = VoiceTextForm()
-	else:
-		form = VoiceTextForm(request.POST)
-		if form.is_valid():
-			text = form.cleaned_data['text']
-			language = form.cleaned_data['language']
-			audiobuilder = AudioBuilder()
-			audio_file = audiobuilder.buildaudio(text, language)
-			print(audio_file)
-			response = FileResponse(
-				open(f'{audio_file}','rb'), as_attachment=True)
-			return response
+# Create audio file from text
+def create_audio(request):
+    if request.method != "POST":
 
-	return render(request, 'audiotext/create.html', {'form': form})
+        # Display blank registration form.
+        form = VoiceTextForm()
+    else:
+        # Process completed form.
+        form = VoiceTextForm(request.POST)
+
+        if form.is_valid():
+            text = form.cleaned_data['text']
+
+            # Define text language
+            language = form.cleaned_data['language']
+
+            # Initialize audio builder class
+            audiobuilder = AudioBuilder()
+
+            # Call build audio method
+            audio_file = audiobuilder.build_audio(text, language)
+            response = FileResponse(
+                open(f'{audio_file}', 'rb'), as_attachment=True)
+            return response
+
+    return render(request, 'audiotext/create_audio.html', {'form': form})

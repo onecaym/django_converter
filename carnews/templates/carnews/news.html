@@ -6,18 +6,18 @@
 
   <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 g-3">
 
-            {% for one_new in news_objects %}
+            {% for article in all_news %}
 
             <div class="col col-lg-4">
               <div class="card text-white bg-secondary" style="height: 440px;">
-                <img src="{{ one_new.image }}" class="card-img-top" alt="...">
+                <img src="{{ article.image }}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">{{ one_new.title }}</h5>
+                  <h5 class="card-title">{{ article.title }}</h5>
                   <div style="height: 75px;">
-                    <p class="card-text">{{ one_new.description }}</p>
+                    <p class="card-text">{{ article.description }}</p>
                   </div>
                   <div class="d-grid gap-2">
-                    <a href="{{ one_new.link }}" class="btn btn-primary" type="button">Read full</a>
+                    <a href="{{ article.link }}" class="btn btn-primary" type="button">Read full</a>
                   </div>
                 </div>
               </div>

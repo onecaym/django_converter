@@ -1,19 +1,31 @@
 from gtts import gTTS
 import os
 
+
 class AudioBuilder():
 
-	def __init__(self):
-		audiobuilder = self
+    def __init__(self):
+        audiobuilder = self
 
-	def search_file(self, filename):
-		return(f"audiotext/audiofiles/{filename}.mp3")
+    # Searching data in file storage
+    def search_file(self, filename):
+        return(f"audiotext/audiofiles/{filename}.mp3")
 
-	def buildaudio(self, content, language):
-		audio_folder = "audiotext/audiofiles"
-		text = content
-		file_name = text[0:20].replace(' ','_')
-		prepared_file = gTTS(text, lang=language)
-		audio_file = prepared_file.save(f"{audio_folder}/{file_name}.mp3")
-		
-		return self.search_file(file_name)
+    # Build audiofile from text
+    def build_audio(self, content, language):
+
+        # Define a file storage
+        audio_storage = "audiotext/audiofiles"
+        text = content
+
+        # Change a file name for database path
+        audio_file_name = text[0:20].replace(' ', '_')
+
+        # Initialize gTTS lib and hand over text and voice language/
+        generated_file = gTTS(text, lang=language)
+
+        # Save completed file in storage
+        generated_file.save(f"{audio_storage}/{audio_file_name}.mp3")
+
+        # Return file name only
+        return self.search_file(audio_file_name)

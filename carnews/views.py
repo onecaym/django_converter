@@ -1,19 +1,25 @@
 from django.shortcuts import render
 from carnews.news import *
-from carnews.news_object_creator import *
+from carnews.article import *
+
+# Show only official car news from Motor1.com
 
 
 def news(request):
 
-    news_objects = []
+    # News storage
+    all_news = []
 
-    parser = NewsParser()
-    news = parser.parse_news()
+    # Initialize and call news parser
+    parser = News_parser()
+    parsed_news = parser.parse_news()
 
-    for new in news:
-        news_objects.append(Newsobject(news[new]))
+    for article in parsed_news:
 
-    context = {'news': news, 'news_objects': news_objects}
+        # Update storage with articles
+        all_news.append(Article(parsed_news[article]))
+
+    context = {'parsed_news': parsed_news, 'all_news': all_news}
 
     return render(request, 'carnews/news.html', context)
 # Create your views here.

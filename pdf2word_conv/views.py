@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from pdf2word_conv.pdf2word_converter import *
+from pdf2word_conv.pdf_converter import *
 from .forms import UploadFileForm
 from .models import Uploaded_File
 from django.http import FileResponse
@@ -12,25 +12,39 @@ from django.contrib import messages
 def index(request):
     return render(request, 'pdf2word_conv/index.html')
 
-
-def success(request):
-    return render(request, 'pdf2word_conv/success.html')
+# Only logged in user can use this application
 
 
 @login_required
-def conv_to_word(request):
-    # check valid form
+# This method takes a .PDF file from user input, saves it and converts to
+# the .DOCX file
+def pdf_converter(request):
+
+    # Check type of request
     if request.method != 'POST':
         form = UploadFileForm()
     else:
         form = UploadFileForm(request.POST, request.FILES)
+
+        # Check form valid
         if form.is_valid():
             uploaded_file = Uploaded_File(file=request.FILES['file'])
             uploaded_file.save()
-            file_object = Uploaded_File.objects.get(file=f"{request.FILES['file'].name.replace(' ','_')}")
+
+            # Changing a file name for database
+            changed_file_name = Uploaded_File.objects.get(
+                file=f"{request.FILES['file'].name.replace(' ','_')}")
+
+            # Initialize FileConverter class to pass the .PDF file
             converter = FileConverter()
-            converted_file = converter.create_file(file_object.file.path, file_object)
-            if converted_file != False:
+            converted_file = converter.create_file(
+                changed_file_name.file.path, changed_file_name)
+
+            # Check file readiness
+            # If file wasn't generated, raise an error
+            # This application work with files without images inside .PDF files
+            # only
+            if converted_file:
                 response = FileResponse(
                     open(
                         f'{converted_file}',
@@ -40,5 +54,4 @@ def conv_to_word(request):
             else:
                 messages.info(request, ".pdf files without images only!")
 
-    # return render(request, 'pdf2word_conv/conv_to_word.html')
-    return render(request, 'pdf2word_conv/conv_to_word.html', {'form': form})
+    return render(request, 'pdf2word_conv/pdf_converter.html', {'form': form})

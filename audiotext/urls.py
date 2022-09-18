@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'audiotext'
 urlpatterns = [
-    path('create/', views.create, name='create'),
+    path('create_audio/', views.create_audio, name='create_audio'),
 ]
