@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import VoiceTextForm
 from audiotext.audiobuilder import *
-from .models import Uploaded_File
 from django.http import FileResponse
 
 

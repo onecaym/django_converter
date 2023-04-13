@@ -13,6 +13,8 @@ def news(request):
     # Initialize and call news parser
     parser = News_parser()
     parsed_news = parser.parse_news()
+    for key, value in parsed_news.items():
+        print(value.keys())
 
     for article in parsed_news:
 

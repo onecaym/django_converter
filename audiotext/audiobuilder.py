@@ -21,7 +21,7 @@ class AudioBuilder():
         # Change a file name for database path
         audio_file_name = text[0:20].replace(' ', '_')
 
-        # Initialize gTTS lib and hand over text and voice language/
+        # Initialize gTTS lib and hand over text and voice language
         generated_file = gTTS(text, lang=language)
 
         # Save completed file in storage
